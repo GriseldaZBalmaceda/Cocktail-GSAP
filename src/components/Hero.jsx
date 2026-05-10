@@ -94,12 +94,15 @@ export const Hero = () => {
    </section>
    <div className="video absolute inset-0">
     <video
+        className="hero-bg-video"
         ref={videoRef}
         src="/videos/input.mp4"
         muted
         playsInline
         autoPlay={autoplayKick}
         preload="auto"
+        controlsList="nodownload nofullscreen noplaybackrate"
+        disablePictureInPicture
         onLoadedData={handleVideoLoadedData}
     />
    </div>
