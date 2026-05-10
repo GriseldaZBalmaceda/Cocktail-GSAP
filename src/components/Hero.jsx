@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { SplitText } from 'gsap/all'
@@ -6,15 +6,7 @@ import { useMediaQuery } from 'react-responsive'
 
 export const Hero = () => {
     const videoRef = useRef()
-    const [autoplayKick, setAutoplayKick] = useState(true)
     const isMobile = useMediaQuery({ maxWidth: 767 })
-
-    const handleVideoLoadedData = (e) => {
-        const el = e.currentTarget
-        el.pause()
-        el.removeAttribute('autoplay')
-        setAutoplayKick(false)
-    }
     useGSAP(() => {
      const heroSplit = new SplitText('.title', {
         type: 'chars, words',
@@ -93,15 +85,7 @@ export const Hero = () => {
     </div>
    </section>
    <div className="video absolute inset-0">
-    <video
-        ref={videoRef}
-        src="/videos/input.mp4"
-        muted
-        playsInline
-        autoPlay={autoplayKick}
-        preload="auto"
-        onLoadedData={handleVideoLoadedData}
-    />
+    <video src="/videos/input.mp4" muted playsInline preload="auto" ref={videoRef} />
    </div>
    </>
   )
