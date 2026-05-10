@@ -21,10 +21,9 @@ export const Navbar = () => {
       })
     })
   return (
-    <nav>
+    <nav className='nav'>
         <div>
-            <a href="#" className='flex items-center gap-2'>
-                <img src="/images/logo.png" alt="logo" className='w-10 h-10' />
+            <a href="#" className='flex items-center gap-2 ml-2'>
                 <p>VelvetPour</p>
             </a>
             <ul>
