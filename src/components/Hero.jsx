@@ -11,10 +11,31 @@ export const Hero = () => {
 
     const handleVideoLoadedData = (e) => {
         const el = e.currentTarget
-        el.pause()
         el.removeAttribute('autoplay')
         setAutoplayKick(false)
+        // iOS Safari often paints the big play icon while paused; a one-frame play clears that state.
+        const settle = () => {
+            el.pause()
+        }
+        const run = el.play()
+        if (run !== undefined) {
+            run.then(() => {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(settle)
+                })
+            }).catch(settle)
+        } else {
+            settle()
+        }
     }
+    const setHeroVideoRef = (el) => {
+        videoRef.current = el
+        if (el) {
+            el.setAttribute('playsinline', '')
+            el.setAttribute('webkit-playsinline', '')
+        }
+    }
+
     useGSAP(() => {
      const heroSplit = new SplitText('.title', {
         type: 'chars, words',
@@ -95,7 +116,7 @@ export const Hero = () => {
    <div className="video absolute inset-0">
     <video
         className="hero-bg-video"
-        ref={videoRef}
+        ref={setHeroVideoRef}
         src="/videos/input.mp4"
         muted
         playsInline

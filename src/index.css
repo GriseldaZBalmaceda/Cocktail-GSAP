@@ -143,14 +143,41 @@ body {
 
     .hero-bg-video::-webkit-media-controls-start-playback-button {
         display: none !important;
+        -webkit-appearance: none;
+        width: 0 !important;
+        height: 0 !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 
     .hero-bg-video::-webkit-media-controls-enclosure {
         display: none !important;
     }
 
+    .hero-bg-video::-webkit-media-controls-panel {
+        display: none !important;
+    }
+
+    .hero-bg-video::-webkit-media-controls-overlay-enclosure {
+        display: none !important;
+    }
+
+    .hero-bg-video::-webkit-media-controls-play-button {
+        display: none !important;
+    }
+
     .hero-bg-video::-webkit-media-controls {
         display: none !important;
+    }
+
+    @supports (-webkit-touch-callout: none) {
+        .hero-bg-video::-webkit-media-controls-start-playback-button,
+        .hero-bg-video::-webkit-media-controls-overlay-enclosure,
+        .hero-bg-video::-webkit-media-controls-panel {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
     }
 
     #cocktails {
